@@ -13,4 +13,12 @@ describe('Order form', () => {
     cy.get('input').should('have.value', 'Josh')
   })
 
+
+  it('should be able to select ingredients and see them appear on the screen', () => {
+    cy.get('button[name="beans"]').click()
+    cy.get('p').contains('Order: beans')
+    cy.get('button[name="lettuce"]').click()
+    cy.get('p').contains('Order: beans, lettuce')
+
+  })
 })
