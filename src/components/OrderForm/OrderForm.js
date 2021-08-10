@@ -10,7 +10,6 @@ const possibleIngredients = [
 export const OrderForm = ({addNewOrder}) => {
   const [name, setName] = useState('')
   const [ingredients, setIngredients] = useState([])
-  const [ingOptions, setIngOptions] = useState(possibleIngredients)
   const [disabled, setDisabled] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -55,13 +54,14 @@ export const OrderForm = ({addNewOrder}) => {
     setIngredients([])
   }
 
-  const ingredientButtons = ingOptions.map(ingredient => {
+  const ingredientButtons = possibleIngredients.map(ingredient => {
     return (
       <button 
         key={ingredient} 
         name={ingredient} 
         onClick={e => handleIngredientChange(e)}
         disabled={disabled.includes(ingredient)}
+        className="ing-button"
       >
         {ingredient}
       </button>
@@ -78,7 +78,9 @@ export const OrderForm = ({addNewOrder}) => {
         onChange={e => handleNameChange(e)}
       />
 
-      { ingredientButtons }
+    <div className="button-container">
+          { ingredientButtons }
+    </div>
 
       {!!errorMessage && <p className="error-msg">{errorMessage}</p>}
 

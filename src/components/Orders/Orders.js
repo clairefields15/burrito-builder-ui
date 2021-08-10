@@ -17,7 +17,7 @@ export const Orders = ({orders}) => {
   });
 
   return (
-    <section>
+    <section className="order-section">
       { orderEls.length ? orderEls : <p>No orders yet!</p> }
     </section>
   )

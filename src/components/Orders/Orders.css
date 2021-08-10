@@ -1,7 +1,6 @@
 .order {
   border: 1px solid black;
   display: inline-block;
-  margin: 10px;
   background-color: #FFF;
 }
 
@@ -9,4 +8,12 @@
   list-style-type: none;
   padding: 0;
   width: 150px;
+}
+
+.order-section {
+  border-top: 1px solid red;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+  padding: 1em;
 }

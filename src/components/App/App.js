@@ -24,8 +24,8 @@ export const App = () => {
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm addNewOrder={addNewOrder}/>
         </header>
+          <OrderForm addNewOrder={addNewOrder}/>
       {!!errorMessage && <h2>{errorMessage}</h2>}
       {!!orders.length && !errorMessage && <Orders orders={orders}/>}      
 </main>
