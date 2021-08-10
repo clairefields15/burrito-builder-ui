@@ -1,5 +1,7 @@
+const baseURL = 'http://localhost:3001/api/v1/orders'
+
 export const getOrders = () => {
-  return fetch('http://localhost:3001/api/v1/orders')
+  return fetch(baseURL)
   .then(response => checkForError(response))
 }
 
@@ -13,5 +15,16 @@ const checkForError = (response) => {
   } else {
     throw new Error('Something went wrong')
   }
+}
 
+export const addOrder = (order) => {
+
+  return fetch(baseURL, {
+    "method": 'POST',
+    "body": JSON.stringify(order),
+    "headers": {
+      "Content-type": "application/json"
+    }
+  })
+    .then(response => checkForError(response))
 }

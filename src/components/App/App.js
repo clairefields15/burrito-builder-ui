@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import {getOrders} from '../../apiCalls';
+import {getOrders, addOrder} from '../../apiCalls';
 import {Orders} from '../../components/Orders/Orders';
 import {OrderForm} from '../../components/OrderForm/OrderForm';
 
@@ -15,8 +15,7 @@ export const App = () => {
   }, [])
 
   const addNewOrder = order => {
-    // make the post request
-    console.log(order)
+    addOrder(order).then(newOrder => setOrders([...orders, newOrder])).catch(err => setErrorMessage(err.message))
   }
 
     return (

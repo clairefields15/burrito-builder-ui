@@ -45,7 +45,6 @@ export const OrderForm = ({addNewOrder}) => {
       addNewOrder(newOrder)
       clearInputs();
     } else {
-      console.log('no order yet')
       setErrorMessage('Make sure your order has a name and at least one ingredient')
     }
 
