@@ -29,6 +29,9 @@ export const OrderForm = () => {
 
   const handleIngredientChange = e => {
     e.preventDefault()
+    if (!ingredients.includes(e.target.name)) {
+      setIngredients([...ingredients, e.target.name])
+    }
   }
 
   const ingredientButtons = ingOptions.map(ingredient => {
