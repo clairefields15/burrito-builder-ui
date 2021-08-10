@@ -6,17 +6,18 @@
   justify-content: center;
 }
 
+
 .App::before {
-  width: 100vw; 
-  height: 100vh;  
+  min-width: 100vw; 
+  min-height: 100vh;  
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   opacity: 0.2; 
   z-index: -1;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-image: url('../../burritos.jpg');
-  background-size: cover;
+  background-size: cover;  
 }
