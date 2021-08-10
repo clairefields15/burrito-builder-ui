@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import {getOrders} from '../../apiCalls';
 import {Orders} from '../../components/Orders/Orders';
-import OrderForm from '../../components/OrderForm/OrderForm';
+import {OrderForm} from '../../components/OrderForm/OrderForm';
 
 export const App = () => {
   const [errorMessage, setErrorMessage] = useState('')
