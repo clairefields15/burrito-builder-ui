@@ -24,7 +24,6 @@ export const OrderForm = ({addNewOrder}) => {
     const duplicates = ingredients.filter(ingredient => {
       return ingredient === e.target.name
     })
-    console.log(duplicates)
 
     if (duplicates.length < 1) {
       setIngredients([...ingredients, e.target.name])
