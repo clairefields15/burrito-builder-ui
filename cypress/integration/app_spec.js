@@ -29,7 +29,10 @@ describe('App view', () => {
     cy.get('form').find('button').contains('cilantro')
     cy.get('form').find('button').contains('sour cream')
     cy.get('form').find('button').contains('Submit Order')
+  })
 
+  it('should see a message if no order yet', () => {
+    cy.get('p').contains('Order: Nothing selected')
   })
 
 })
