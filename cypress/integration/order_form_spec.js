@@ -13,12 +13,21 @@ describe('Order form', () => {
     cy.get('input').should('have.value', 'Josh')
   })
 
-
   it('should be able to select ingredients and see them appear on the screen', () => {
     cy.get('button[name="beans"]').click()
     cy.get('p').contains('Order: beans')
     cy.get('button[name="lettuce"]').click()
     cy.get('p').contains('Order: beans, lettuce')
+  })
+
+    it('should only be able to click an ingredient button twice', () => {
+    cy.get('button[name="beans"]').click()
+    cy.get('p').contains('Order: beans')
+    cy.get('button[name="beans"]').click()
+    cy.get('p').contains('Order: beans, beans')
+    cy.get('button[name="beans"]').should('be.disabled')
 
   })
+
+
 })
