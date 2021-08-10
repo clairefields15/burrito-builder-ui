@@ -7,11 +7,12 @@ const possibleIngredients = [
   'jalapenos', 'cilantro', 'sour cream'
 ];
 
-export const OrderForm = () => {
+export const OrderForm = ({addNewOrder}) => {
   const [name, setName] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [ingOptions, setIngOptions] = useState(possibleIngredients)
   const [disabled, setDisabled] = useState([])
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleNameChange = e => {
     e.preventDefault();
@@ -35,20 +36,19 @@ export const OrderForm = () => {
 
     const handleSubmit = e => {
     e.preventDefault();
-
-    // if there is at least one ingredient && a name
-
-    let newOrder = {
-      name: name,
-      ingredients: ingredients
+    setErrorMessage('')
+    if (name && ingredients.length) {
+      let newOrder = {
+        name: name,
+        ingredients: ingredients
+      }
+      addNewOrder(newOrder)
+      clearInputs();
+    } else {
+      console.log('no order yet')
+      setErrorMessage('Make sure your order has a name and at least one ingredient')
     }
-    console.log(newOrder)
 
-    // pass that order to app to make a post request
-    // else throw an error
-
-
-    clearInputs();
   }
 
   const clearInputs = () => {
@@ -80,6 +80,8 @@ export const OrderForm = () => {
       />
 
       { ingredientButtons }
+
+      {!!errorMessage && <p className="error-msg">{errorMessage}</p>}
 
       <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 

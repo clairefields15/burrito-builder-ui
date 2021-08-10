@@ -8,18 +8,22 @@ export const App = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [orders, setOrders] = useState([])
 
-
   useEffect(() => {
     getOrders()
       .then(orders => setOrders(orders.orders))
       .catch(err => setErrorMessage(err.message));
   }, [])
 
+  const addNewOrder = order => {
+    // make the post request
+    console.log(order)
+  }
+
     return (
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm />
+          <OrderForm addNewOrder={addNewOrder}/>
         </header>
       {!!errorMessage && !orders.length && <h2>{errorMessage}</h2>}
       {!!orders.length && !errorMessage && <Orders orders={orders}/>}      
