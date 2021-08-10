@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './OrderForm.css'
 
 const possibleIngredients = [
   'beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 
@@ -23,6 +24,7 @@ export const OrderForm = () => {
 
   const handleNameChange = e => {
     e.preventDefault();
+    setName(e.target.value)
   }
 
   const handleIngredientChange = e => {
