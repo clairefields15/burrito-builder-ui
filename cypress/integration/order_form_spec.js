@@ -28,19 +28,6 @@ describe('Order form', () => {
     cy.get('button[name="beans"]').should('be.disabled')
   })
 
-  it('should be able to submit the form and make a post request', () => {
-    cy.get('input').type('Josh')
-    cy.get('button[name="beans"]').click()
-    cy.get('button[name="lettuce"]').click()
-    cy.intercept('POST','http://localhost:3001/api/v1/orders', {
-      statusCode: 200,
-      fixture: 'joshOrder.json'
-    })
-    cy.get('button[name="submit"]').click()
-    cy.get('.order').contains('Josh')
-    cy.get('ul').contains('lettuce')
-  })
-
   it('should be not able to submit the form without a name', () => {
     cy.get('button[name="beans"]').click()
     cy.get('button[name="lettuce"]').click()
@@ -62,7 +49,45 @@ describe('Order form', () => {
     })
     cy.get('button[name="submit"]').click()
     cy.get('ul').contains('lettuce')
+  })
 
+  it('should see an error if the post fails (404)', () => {
+    cy.get('input').type('Josh')
+    cy.get('button[name="beans"]').click()
+    cy.get('button[name="lettuce"]').click()
+    cy.intercept('POST','http://localhost:3001/api/v1/orders', {
+      statusCode: 404,
+      fixture: 'joshOrder.json'
+    })
+    cy.get('button[name="submit"]').click()
+    cy.contains('404: Resource not found')
+    cy.get('.order').should('not.exist')
+  })
+
+  it('should see an error if the post fails (500)', () => {
+    cy.get('input').type('Josh')
+    cy.get('button[name="beans"]').click()
+    cy.get('button[name="lettuce"]').click()
+    cy.intercept('POST','http://localhost:3001/api/v1/orders', {
+      statusCode: 500,
+      fixture: 'joshOrder.json'
+    })
+    cy.get('button[name="submit"]').click()
+    cy.contains('500')
+    cy.get('.order').should('not.exist')
+  })
+
+  it('should see an error if the post fails (other)', () => {
+    cy.get('input').type('Josh')
+    cy.get('button[name="beans"]').click()
+    cy.get('button[name="lettuce"]').click()
+    cy.intercept('POST','http://localhost:3001/api/v1/orders', {
+      statusCode: 422,
+      fixture: 'joshOrder.json'
+    })
+    cy.get('button[name="submit"]').click()
+    cy.contains('Something went wrong')
+    cy.get('.order').should('not.exist')
   })
 
 })
