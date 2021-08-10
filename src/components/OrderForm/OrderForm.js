@@ -13,16 +13,29 @@ export const OrderForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    this.clearInputs();
+    clearInputs();
   }
 
   const clearInputs = () => {
-    this.setState({name: '', ingredients: []});
+    setName('')
+    setIngredients([])
   }
 
-  const ingredientButtons = possibleIngredients.map(ingredient => {
+  const handleNameChange = e => {
+    e.preventDefault();
+  }
+
+  const handleIngredientChange = e => {
+    e.preventDefault()
+  }
+
+  const ingredientButtons = ingOptions.map(ingredient => {
     return (
-      <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
+      <button 
+        key={ingredient} 
+        name={ingredient} 
+        onClick={e => handleIngredientChange(e)}
+      >
         {ingredient}
       </button>
     )
@@ -34,15 +47,15 @@ export const OrderForm = () => {
         type='text'
         placeholder='Name'
         name='name'
-        value={this.state.name}
-        onChange={e => this.handleNameChange(e)}
+        value={name}
+        onChange={e => handleNameChange(e)}
       />
 
       { ingredientButtons }
 
-      <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
+      <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 
-      <button onClick={e => this.handleSubmit(e)}>
+      <button onClick={e => handleSubmit(e)}>
         Submit Order
       </button>
     </form>
