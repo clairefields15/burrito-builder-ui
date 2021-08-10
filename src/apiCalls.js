@@ -7,9 +7,9 @@ const checkForError = (response) => {
   if(response.ok) {
     return response.json()
   } else if (response.status === 404) {
-    throw new Error('404')
+    throw new Error('404: Resource not found')
   } else if (response.status === 500) {
-    throw new Error('500')
+    throw new Error('500: Sorry our server is down')
   } else {
     throw new Error('Something went wrong')
   }
