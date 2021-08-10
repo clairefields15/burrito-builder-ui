@@ -35,4 +35,14 @@ describe('App view', () => {
     cy.get('p').contains('Order: Nothing selected')
   })
 
+  it('should see past orders', () => {
+    cy.get('.order').contains('Kayla')
+    cy.get('ul').contains('beans')
+    cy.get('.order').contains('Scott')
+    cy.get('ul').contains('pico de gallo')
+    cy.get('.order').contains('Claire')
+    cy.get('ul').contains('carnitas')
+
+  })
+
 })
