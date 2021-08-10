@@ -13,16 +13,6 @@ export const OrderForm = () => {
   const [ingOptions, setIngOptions] = useState(possibleIngredients)
   const [disabled, setDisabled] = useState([])
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    clearInputs();
-  }
-
-  const clearInputs = () => {
-    setName('')
-    setIngredients([])
-  }
-
   const handleNameChange = e => {
     e.preventDefault();
     setName(e.target.value)
@@ -41,6 +31,29 @@ export const OrderForm = () => {
       setIngredients([...ingredients, e.target.name])
       setDisabled([...ingredients, e.target.name])
     }
+  }
+
+    const handleSubmit = e => {
+    e.preventDefault();
+
+    // if there is at least one ingredient && a name
+
+    let newOrder = {
+      name: name,
+      ingredients: ingredients
+    }
+    console.log(newOrder)
+
+    // pass that order to app to make a post request
+    // else throw an error
+
+
+    clearInputs();
+  }
+
+  const clearInputs = () => {
+    setName('')
+    setIngredients([])
   }
 
   const ingredientButtons = ingOptions.map(ingredient => {
