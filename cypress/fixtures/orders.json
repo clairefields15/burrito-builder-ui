@@ -5,7 +5,6 @@
       "name": "Kayla",
       "ingredients": [
       "beans",
-      "lettuce",
       "carnitas",
       "queso fresco"
       ]
@@ -15,8 +14,7 @@
       "name": "Scott",
       "ingredients": [
       "steak",
-      "pico de gallo",
-      "lettuce"
+      "pico de gallo"
       ]
     },
     {
@@ -24,9 +22,7 @@
       "name": "Claire",
       "ingredients": [
       "beans",
-      "sour cream",
-      "carnitas",
-      "queso fresco"
+      "sour cream"
       ]
     }
   ]

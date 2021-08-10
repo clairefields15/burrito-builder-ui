@@ -84,7 +84,7 @@ export const OrderForm = ({addNewOrder}) => {
 
       <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 
-      <button onClick={e => handleSubmit(e)}>
+      <button name="submit" onClick={e => handleSubmit(e)}>
         Submit Order
       </button>
     </form>

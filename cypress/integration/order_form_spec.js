@@ -26,8 +26,20 @@ describe('Order form', () => {
     cy.get('button[name="beans"]').click()
     cy.get('p').contains('Order: beans, beans')
     cy.get('button[name="beans"]').should('be.disabled')
-
   })
 
+  it('should be able to submit the form and make a post request', () => {
+    cy.get('input').type('Josh')
+    cy.get('button[name="beans"]').click()
+    cy.get('button[name="lettuce"]').click()
+    cy.intercept('POST','http://localhost:3001/api/v1/orders', {
+      statusCode: 200,
+      fixture: 'joshOrder.json'
+    })
+    cy.get('button[name="submit"]').click()
+    cy.get('.order').contains('Josh')
+    cy.get('ul').contains('lettuce')
+
+  })
 
 })
