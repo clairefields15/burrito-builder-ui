@@ -40,6 +40,7 @@ export const OrderForm = () => {
         key={ingredient} 
         name={ingredient} 
         onClick={e => handleIngredientChange(e)}
+        disabled={ingredients.includes(ingredient)}
       >
         {ingredient}
       </button>
