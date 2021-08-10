@@ -39,6 +39,29 @@ describe('Order form', () => {
     cy.get('button[name="submit"]').click()
     cy.get('.order').contains('Josh')
     cy.get('ul').contains('lettuce')
+  })
+
+  it('should be not able to submit the form without a name', () => {
+    cy.get('button[name="beans"]').click()
+    cy.get('button[name="lettuce"]').click()
+    cy.get('button[name="submit"]').click()
+    cy.contains('Make sure your order has a name and at least one ingredient')
+    cy.get('ul').should('not.contain', 'lettuce')
+  })
+
+  it('should be not able to submit the form without one ingredient', () => {
+    cy.get('input').type('Josh')
+    cy.get('button[name="submit"]').click()
+    cy.contains('Make sure your order has a name and at least one ingredient')
+    cy.get('ul').should('not.contain', 'lettuce')
+    cy.get('button[name="beans"]').click()
+    cy.get('button[name="lettuce"]').click()
+    cy.intercept('POST','http://localhost:3001/api/v1/orders', {
+      statusCode: 200,
+      fixture: 'joshOrder.json'
+    })
+    cy.get('button[name="submit"]').click()
+    cy.get('ul').contains('lettuce')
 
   })
 
