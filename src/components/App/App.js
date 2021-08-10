@@ -15,7 +15,9 @@ export const App = () => {
   }, [])
 
   const addNewOrder = order => {
-    addOrder(order).then(newOrder => setOrders([...orders, newOrder])).catch(err => setErrorMessage(err.message))
+    addOrder(order)
+      .then(newOrder => setOrders([...orders, newOrder]))
+      .catch(err => setErrorMessage(err.message))
   }
 
     return (
@@ -24,7 +26,7 @@ export const App = () => {
           <h1>Burrito Builder</h1>
           <OrderForm addNewOrder={addNewOrder}/>
         </header>
-      {!!errorMessage && !orders.length && <h2>{errorMessage}</h2>}
+      {!!errorMessage && <h2>{errorMessage}</h2>}
       {!!orders.length && !errorMessage && <Orders orders={orders}/>}      
 </main>
     );
