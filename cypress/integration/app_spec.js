@@ -42,7 +42,16 @@ describe('App view', () => {
     cy.get('ul').contains('pico de gallo')
     cy.get('.order').contains('Claire')
     cy.get('ul').contains('carnitas')
+  })
 
+  it('should see a message if the fetch fails (404)', () => {
+    cy.intercept('GET', 'http://localhost:3001/api/v1/orders', {
+      statusCode: 404,
+      fixture: 'orders.json'
+    })
+    cy.visit('http://localhost:3000')
+    cy.contains('404: Resource not found')
+    cy.get('.order').should('not.exist')
   })
 
 })
