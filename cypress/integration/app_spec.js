@@ -54,4 +54,14 @@ describe('App view', () => {
     cy.get('.order').should('not.exist')
   })
 
+    it('should see a message if the fetch fails (500)', () => {
+    cy.intercept('GET', 'http://localhost:3001/api/v1/orders', {
+      statusCode: 500,
+      fixture: 'orders.json'
+    })
+    cy.visit('http://localhost:3000')
+    cy.contains('500: Sorry our server is down')
+    cy.get('.order').should('not.exist')
+  })
+
 })
