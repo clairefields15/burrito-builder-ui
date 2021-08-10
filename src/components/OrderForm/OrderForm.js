@@ -11,6 +11,7 @@ export const OrderForm = () => {
   const [name, setName] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [ingOptions, setIngOptions] = useState(possibleIngredients)
+  const [disabled, setDisabled] = useState([])
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -29,8 +30,16 @@ export const OrderForm = () => {
 
   const handleIngredientChange = e => {
     e.preventDefault()
-    if (!ingredients.includes(e.target.name)) {
+
+    const duplicates = ingredients.filter(ingredient => {
+      return ingredient === e.target.name
+    })
+
+    if (duplicates.length < 1) {
       setIngredients([...ingredients, e.target.name])
+    } else if (duplicates.length === 1) {
+      setIngredients([...ingredients, e.target.name])
+      setDisabled([...ingredients, e.target.name])
     }
   }
 
@@ -40,7 +49,7 @@ export const OrderForm = () => {
         key={ingredient} 
         name={ingredient} 
         onClick={e => handleIngredientChange(e)}
-        disabled={ingredients.includes(ingredient)}
+        disabled={disabled.includes(ingredient)}
       >
         {ingredient}
       </button>
